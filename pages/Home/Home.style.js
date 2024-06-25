@@ -11,6 +11,6 @@ export const styles = StyleSheet.create({
   },
   txt: {
     color: 'white',
-    fontSize: 32,
+    fontSize: 30,
   },
 });
