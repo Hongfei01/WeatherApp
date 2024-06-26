@@ -9,13 +9,27 @@ import { useEffect, useState } from 'react';
 import background from './assets/background.png';
 import { Home } from './pages/Home/Home';
 import { styles } from './App.style';
+import { FetchWeatherApi } from './api/weather';
 
 export default function App() {
   const [coordinate, setCoordinate] = useState(null);
+  const [weather, setWeather] = useState(null);
 
+  // get user location
   useEffect(() => {
     getLocation();
   }, []);
+
+  // get weather
+  useEffect(() => {
+    async function fetchWeather() {
+      if (coordinate) {
+        const data = await FetchWeatherApi.getWeatherData(coordinate);
+        setWeather(data);
+      }
+    }
+    fetchWeather();
+  }, [coordinate]);
 
   async function getLocation() {
     const { status } = await requestForegroundPermissionsAsync();
@@ -32,7 +46,6 @@ export default function App() {
       });
     }
   }
-  console.log(coordinate);
   return (
     <ImageBackground
       style={styles.imgBg}
