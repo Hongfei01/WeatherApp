@@ -2,11 +2,12 @@ import { View, Image } from 'react-native';
 import { Txt } from '../Txt/Txt';
 
 import { styles } from './styles';
+import { Clock } from '../Clock/Clock';
 export const MeteoBasic = ({ temperature, weatherInfo }) => {
   return (
     <>
       <View style={styles.clock}>
-        <Txt>Clock</Txt>
+        <Clock />
       </View>
       <View style={styles.city}>
         <Txt>City</Txt>
