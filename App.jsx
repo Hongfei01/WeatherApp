@@ -14,6 +14,7 @@ import { FetchWeatherApi } from './api/weather';
 export default function App() {
   const [coordinate, setCoordinate] = useState(null);
   const [weather, setWeather] = useState(null);
+  const [city, setCity] = useState(null);
 
   // get user location
   useEffect(() => {
@@ -25,7 +26,9 @@ export default function App() {
     async function fetchWeather() {
       if (coordinate) {
         const data = await FetchWeatherApi.getWeatherData(coordinate);
+        const city = await FetchWeatherApi.getCityByCoordinate(coordinate);
         setWeather(data);
+        setCity('city');
       }
     }
     fetchWeather();
@@ -54,7 +57,7 @@ export default function App() {
     >
       <SafeAreaProvider>
         <SafeAreaView style={styles.root}>
-          {weather && <Home weather={weather} />}
+          {weather && <Home weather={weather} city={city} />}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
