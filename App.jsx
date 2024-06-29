@@ -54,7 +54,7 @@ export default function App() {
     >
       <SafeAreaProvider>
         <SafeAreaView style={styles.root}>
-          <Home />
+          {weather && <Home weather={weather} />}
         </SafeAreaView>
       </SafeAreaProvider>
     </ImageBackground>
