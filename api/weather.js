@@ -19,11 +19,9 @@ export class FetchWeatherApi {
         `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coordinate.lat}&lon=${coordinate.lng}`
       );
       const data = await response.json();
-      console.log(data);
       // const {
 
       // } = data.address;
-      console.log(data.address.city);
       return 'Goungzhou';
     } catch (error) {
       return error;

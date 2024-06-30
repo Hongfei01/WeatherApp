@@ -1,4 +1,4 @@
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 
 import { styles } from './Home.style';
 import { Txt } from '../../components/Txt/Txt';
@@ -19,6 +19,7 @@ export const Home = ({ weather, city }) => {
           temperature={temperature}
           weatherInfo={weatherInfo}
           city={city}
+          dailyWeather={weather.daily}
         />
       </View>
       <View style={styles.searchbar}>

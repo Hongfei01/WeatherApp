@@ -1,9 +1,23 @@
-import { View, Image } from 'react-native';
+import { View, Image, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 import { Txt } from '../Txt/Txt';
+import { Clock } from '../Clock/Clock';
 
 import { styles } from './styles';
-import { Clock } from '../Clock/Clock';
-export const MeteoBasic = ({ temperature, weatherInfo, city }) => {
+import { ROUTES } from '../../routes/routes';
+
+export const MeteoBasic = ({
+  temperature,
+  weatherInfo,
+  city,
+  dailyWeather,
+}) => {
+  const nav = useNavigation();
+
+  function handleNav() {
+    nav.navigate(ROUTES.FORECASTS, { city, ...dailyWeather });
+  }
   return (
     <>
       <View style={styles.clock}>
@@ -16,7 +30,9 @@ export const MeteoBasic = ({ temperature, weatherInfo, city }) => {
         <Txt style={styles.interpertation_txt}>{weatherInfo.label}</Txt>
       </View>
       <View style={styles.temperature_box}>
-        <Txt style={styles.temperature}>{Math.round(temperature)}°</Txt>
+        <TouchableOpacity onPress={handleNav}>
+          <Txt style={styles.temperature}>{Math.round(temperature)}°</Txt>
+        </TouchableOpacity>
         <Image style={styles.image} source={weatherInfo.image} />
       </View>
     </>

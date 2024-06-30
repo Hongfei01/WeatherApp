@@ -13,6 +13,7 @@ import { Home } from './pages/Home/Home';
 import { Forecasts } from './components/Forecasts/Forecasts';
 import { styles } from './App.style';
 import { FetchWeatherApi } from './api/weather';
+import { ROUTES } from './routes/routes';
 
 const Stack = createNativeStackNavigator();
 const theme = {
@@ -68,14 +69,14 @@ export default function App() {
         <SafeAreaProvider>
           <SafeAreaView style={styles.root}>
             <Stack.Navigator
-              initialRouteName='Home'
-              screenOptions={{ headerShown: false }}
+              initialRouteName={ROUTES.HOME}
+              screenOptions={{ headerShown: false, animation: 'fade' }}
             >
-              <Stack.Screen name='Home'>
+              <Stack.Screen name={ROUTES.HOME}>
                 {() => weather && <Home weather={weather} city={city} />}
               </Stack.Screen>
 
-              <Stack.Screen name='Forecasts' component={Forecasts} />
+              <Stack.Screen name={ROUTES.FORECASTS} component={Forecasts} />
             </Stack.Navigator>
             {/* {weather && <Home weather={weather} city={city} />} */}
           </SafeAreaView>
