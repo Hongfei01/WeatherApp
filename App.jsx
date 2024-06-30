@@ -28,7 +28,7 @@ export default function App() {
         const data = await FetchWeatherApi.getWeatherData(coordinate);
         const city = await FetchWeatherApi.getCityByCoordinate(coordinate);
         setWeather(data);
-        setCity('city');
+        setCity(city);
       }
     }
     fetchWeather();

@@ -20,10 +20,11 @@ export class FetchWeatherApi {
       );
       const data = await response.json();
       console.log(data);
-      const {
-        address: { city, village, town },
-      } = data.address;
-      return city || village || town;
+      // const {
+
+      // } = data.address;
+      console.log(data.address.city);
+      return 'Goungzhou';
     } catch (error) {
       return error;
     }
