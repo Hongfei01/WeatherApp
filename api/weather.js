@@ -22,7 +22,7 @@ export class FetchWeatherApi {
       // const {
 
       // } = data.address;
-      return 'Goungzhou';
+      return 'Guangzhou';
     } catch (error) {
       return error;
     }
