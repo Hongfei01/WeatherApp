@@ -4,11 +4,14 @@ import { styles } from './Home.style';
 import { Txt } from '../../components/Txt/Txt';
 import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
 import { getWeatherInfo } from '../../utils/weatherCode';
+import { MeteoAdvanced } from '../../components/MeteoAdvanced/MeteoAdvanced';
 
 export const Home = ({ weather, city }) => {
   const currentWeather = weather.current_weather;
   const temperature = currentWeather.temperature;
   const weatherInfo = getWeatherInfo(currentWeather.weathercode);
+  const sunrise = weather.daily.sunrise[0].split('T')[1];
+  const sunset = weather.daily.sunset[0].split('T')[1];
   return (
     <>
       <View style={styles.basic}>
@@ -22,7 +25,11 @@ export const Home = ({ weather, city }) => {
         <Txt>searcgbar</Txt>
       </View>
       <View style={styles.advanced}>
-        <Txt>advanced</Txt>
+        <MeteoAdvanced
+          sunrise={sunrise}
+          sunset={sunset}
+          windspread={currentWeather.windspeed}
+        />
       </View>
     </>
   );

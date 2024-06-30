@@ -1,4 +1,9 @@
 import { StyleSheet } from 'react-native';
+import {
+  scaleFontSize,
+  horizontalScale,
+  verticalScale,
+} from '../../assets/styles/scaling';
 export const styles = StyleSheet.create({
   basic: {
     flex: 2,
@@ -8,10 +13,11 @@ export const styles = StyleSheet.create({
   },
   advanced: {
     flex: 1,
+    marginBottom: verticalScale(15),
   },
   txt: {
     color: 'white',
-    fontSize: 30,
+    fontSize: scaleFontSize(30),
     fontFamily: 'Alta-Regular',
   },
 });
