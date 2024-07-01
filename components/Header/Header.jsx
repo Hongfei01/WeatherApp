@@ -8,12 +8,12 @@ export const Header = ({ city }) => {
   const nav = useNavigation();
   return (
     <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={nav.goBack}>
-        <Txt>{'<'}</Txt>
+      <TouchableOpacity onPress={nav.goBack}>
+        <Txt style={styles.backButton}>{'<'}</Txt>
       </TouchableOpacity>
       <View style={styles.box}>
-        <Txt>{city}</Txt>
-        <Txt style={styles.subtitle}>7 days forecast</Txt>
+        <Txt>{city.toUpperCase()}</Txt>
+        <Txt style={styles.subtitle}>7 days forecasts</Txt>
       </View>
     </View>
   );

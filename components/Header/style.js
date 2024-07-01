@@ -7,11 +7,12 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   backButton: {
-    width: horizontalScale(40),
+    width: horizontalScale(30),
   },
   box: {
+    flex: 1,
     alignItems: 'center',
-    marginLeft: horizontalScale(50),
+    marginRight: horizontalScale(30),
   },
   subtitle: {
     fontSize: scaleFontSize(25),
