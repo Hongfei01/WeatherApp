@@ -1,21 +1,17 @@
 import { View } from 'react-native';
 
 import { styles } from './Home.style';
-import { Txt } from '../../components/Txt/Txt';
 import { MeteoBasic } from '../../components/MeteoBasic/MeteoBasic';
 import { getWeatherInfo } from '../../utils/weatherCode';
 import { MeteoAdvanced } from '../../components/MeteoAdvanced/MeteoAdvanced';
 import { Searchbar } from '../../components/Searchbar/Searchbar';
-import { useState } from 'react';
 
-export const Home = ({ weather, city }) => {
-  const [search, setSearch] = useState('');
+export const Home = ({ weather, city, onSubmitSearch }) => {
   const currentWeather = weather.current_weather;
   const temperature = currentWeather.temperature;
   const weatherInfo = getWeatherInfo(currentWeather.weathercode);
   const sunrise = weather.daily.sunrise[0].split('T')[1];
   const sunset = weather.daily.sunset[0].split('T')[1];
-  console.log(search);
   return (
     <>
       <View style={styles.basic}>
@@ -27,7 +23,7 @@ export const Home = ({ weather, city }) => {
         />
       </View>
       <View style={styles.searchbar}>
-        <Searchbar onSearch={setSearch} />
+        <Searchbar onSearch={onSubmitSearch} />
       </View>
       <View style={styles.advanced}>
         <MeteoAdvanced

@@ -1,5 +1,5 @@
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
-import { ImageBackground } from 'react-native';
+import { Alert, ImageBackground } from 'react-native';
 import {
   requestForegroundPermissionsAsync,
   getCurrentPositionAsync,
@@ -59,6 +59,14 @@ export default function App() {
       });
     }
   }
+  async function getDataBySearchbar(city) {
+    try {
+      const data = await FetchWeatherApi.fetchDataByCity(city);
+      setCoordinate(data);
+    } catch (error) {
+      Alert.alert('Opps!', error.message);
+    }
+  }
   return (
     <NavigationContainer theme={theme}>
       <ImageBackground
@@ -73,7 +81,15 @@ export default function App() {
               screenOptions={{ headerShown: false, animation: 'fade' }}
             >
               <Stack.Screen name={ROUTES.HOME}>
-                {() => weather && <Home weather={weather} city={city} />}
+                {() =>
+                  weather && (
+                    <Home
+                      weather={weather}
+                      city={city}
+                      onSubmitSearch={getDataBySearchbar}
+                    />
+                  )
+                }
               </Stack.Screen>
 
               <Stack.Screen name={ROUTES.FORECASTS} component={Forecasts} />

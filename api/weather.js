@@ -19,12 +19,23 @@ export class FetchWeatherApi {
         `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${coordinate.lat}&lon=${coordinate.lng}`
       );
       const data = await response.json();
-      // const {
-
-      // } = data.address;
-      return 'Guangzhou';
+      const { city, village, country } = data.address;
+      return city || village || country;
     } catch (error) {
       return error;
+    }
+  }
+
+  static async fetchDataByCity(city) {
+    try {
+      const response = await fetch(
+        `https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=10&language=en&format=json`
+      );
+      const data = await response.json();
+      const { latitude: lat, longitude: lng } = data.results[0];
+      return { lat, lng };
+    } catch (error) {
+      throw new Error('Invalid city');
     }
   }
 }
